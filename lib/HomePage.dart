@@ -45,11 +45,8 @@ class HomePage extends StatelessWidget {
 
           AppCubit cubit = AppCubit.get(context);
           return Scaffold(
-            body: Center(
-                child: DeveloperChart(
-              data: cubit.list,
-            )),
-           /* floatingActionButton: FloatingActionButton(
+            floatingActionButton: FloatingActionButton(
+              child: const Icon(Icons.add),
               onPressed: () {
                 cubit.insertToDatabase(
                     year: '2018',
@@ -73,7 +70,13 @@ class HomePage extends StatelessWidget {
                   barColor: charts.ColorUtil.fromDartColor(Colors.green),
                 );
               },
-            ),*/
+            ),
+
+            body: Center(
+                child: DeveloperChart(
+              data: cubit.list,
+            )),
+
           );
         });
 /*    return BlocProvider( create: (BuildContext context) => AppCubit()..createDatabase()
