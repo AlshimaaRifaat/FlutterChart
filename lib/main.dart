@@ -1,7 +1,5 @@
-import 'package:charts_flutter/flutter.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_chart_sample/DeveloperChart.dart';
 import 'package:flutter_chart_sample/HomePage.dart';
 import 'package:flutter_chart_sample/base/cubit.dart';
 import 'package:flutter_chart_sample/base/states.dart';
@@ -24,10 +22,7 @@ class MyApp extends StatelessWidget
   @override
   Widget build(BuildContext context)
   {
-   /* return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: HomePage(),
-    );*/
+
     return BlocProvider( create: (BuildContext context) => AppCubit()..createDatabase(),
       child: BlocConsumer<AppCubit, AppStates>(
         listener: (BuildContext context, AppStates state) {
@@ -37,7 +32,24 @@ class MyApp extends StatelessWidget
         builder: (BuildContext context, AppStates state) {
 
           return MaterialApp(
-            debugShowCheckedModeBanner: false,
+              theme: ThemeData(
+                inputDecorationTheme: const InputDecorationTheme(
+              border:OutlineInputBorder(),
+                  contentPadding: EdgeInsets.symmetric(
+                    vertical: 1,
+                    horizontal: 1
+                  )
+
+
+          ),
+              primarySwatch: Colors.green,
+              colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: Colors.green,
+          ).copyWith(),
+              ),
+
+          debugShowCheckedModeBanner: false,
+
             home: HomePage(),
 
           );
