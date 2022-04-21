@@ -3,12 +3,35 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_chart_sample/DeveloperSeries.dart';
 import 'package:flutter_chart_sample/base/states.dart';
+import 'package:flutter_chart_sample/module/BarChartPage.dart';
+import 'package:flutter_chart_sample/module/LineChartPage.dart';
+import 'package:flutter_chart_sample/module/PieChartpage.dart';
 import 'package:sqflite/sqflite.dart';
 
 class AppCubit extends Cubit<AppStates> {
   AppCubit() : super(AppInitialState());
 
   static AppCubit get(context) => BlocProvider.of(context);
+
+  int currentIndex = 0;
+
+  List<Widget> screens = [
+    BarChartPage(),
+    PieChartPage(),
+    LineChartPage(),
+  ];
+
+  List<String> titles = [
+    'Bar chart',
+    'Pie Chart',
+    'Line Chart',
+  ];
+
+  void changeIndex(int index) {
+    currentIndex = index;
+    emit(AppChangeBottomNavBarState());
+  }
+
 
   Database database;
 
@@ -133,6 +156,7 @@ class AppCubit extends Cubit<AppStates> {
         emit(AppInsertPieDatabaseState());
 
         getPieChartDataFromDatabase(database);
+        print('pie inserted');
       }).catchError((error) {
         print('Error When Inserting New Record ${error.toString()}');
       });
@@ -199,16 +223,16 @@ class AppCubit extends Cubit<AppStates> {
         pieChartData.add(model);
       });
 
-
+        print('pie data: '+pieChartData.length.toString());
       emit(AppGetPieChartDatabaseState());
     });
   }
 
 
-  String currentChartType='bar';
+  //String currentChartType='bar';
 
-  void changeChartType(String chartType) {
+ /* void changeChartType(String chartType) {
     currentChartType = chartType;
     emit(AppChangeChartTypeState());
-  }
+  }*/
 }

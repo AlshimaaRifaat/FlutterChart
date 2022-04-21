@@ -6,18 +6,19 @@ import 'package:flutter_chart_sample/DeveloperSeries.dart';
 
 class DeveloperChart extends StatelessWidget {
   final List<DeveloperSeries> data;
-   String chartType;
-   List<charts.Series<DeveloperSeries, num>> bieChartseries;
+ //  String chartType;
+  int index;
+   List<charts.Series<DeveloperSeries, String>> bieChartseries;
    List<charts.Series<DeveloperSeries, String>> barChartseries;
    List<charts.Series<DeveloperSeries, int>> lineChartSeries;
 
 
-  DeveloperChart({@required this.chartType='bar',@required this.data});
+  DeveloperChart({@required this.index=0,@required this.data});
   @override
   Widget build(BuildContext context) {
 
-    print("chart ty: "+chartType);
-    if(chartType=='bar'){
+
+    if(index==0){
 
       barChartseries = [
         charts.Series(
@@ -53,14 +54,14 @@ class DeveloperChart extends StatelessWidget {
           ),
         ),
       );
-    }else if(chartType=='pie'){
+    }else if(index==1){
       print(data.toString());
 
       bieChartseries = [
         charts.Series(
             id: "developers",
             data: data,
-            domainFn: (DeveloperSeries series, _) =>series.yearNum,
+            domainFn: (DeveloperSeries series, _) =>series.year,
             measureFn: (DeveloperSeries series, _) => series.developers,
             colorFn: (DeveloperSeries series, _) => series.barColor
         )
@@ -93,10 +94,10 @@ class DeveloperChart extends StatelessWidget {
           ),
         ),
       );
-    }else if(chartType=='line'){
+    }else if(index==2){
 
       print("line data "+data.length.toString());
-      print("typeee "+chartType);
+
 
       lineChartSeries = [
         charts.Series(
