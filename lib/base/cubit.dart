@@ -229,10 +229,14 @@ class AppCubit extends Cubit<AppStates> {
   }
 
 
-  //String currentChartType='bar';
+  void deleteLineChartData() async
+  {
+    database.rawDelete('DELETE FROM LineChart ')
+        .then((value)
+    {
+      //getDataFromDatabase(database);
+      emit(DeleteLineChartDatabaseState());
+    });
+  }
 
- /* void changeChartType(String chartType) {
-    currentChartType = chartType;
-    emit(AppChangeChartTypeState());
-  }*/
 }

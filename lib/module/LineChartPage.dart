@@ -95,7 +95,7 @@ class LineChartPage extends StatelessWidget {
                     defaultButton(
                       text: 'Save line chart data',
                       function: () {
-
+                         cubit.deleteLineChartData();
                         cubit.insertLineChartDataToDatabase(
                             year: 2018,
                             developers: int.parse(year1LineChartController.text),
