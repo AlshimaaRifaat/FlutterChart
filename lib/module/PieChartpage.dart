@@ -97,6 +97,7 @@ class PieChartPage extends StatelessWidget {
                     defaultButton(
                       text: 'Save Pie chart data',
                       function: () {
+                        cubit.deletePieChartData();
                         cubit.insertPieChartDataToDatabase(
                             year: "2018",
                             developers: int.parse(year1PieChartController.text),

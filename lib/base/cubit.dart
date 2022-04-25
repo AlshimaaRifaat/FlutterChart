@@ -187,11 +187,11 @@ class AppCubit extends Cubit<AppStates> {
   }
 
   void getLineChartDataFromDatabase(database) {
-    lineChartData = [];
+
     emit(AppGetLineChartDatabaseLoadingState());
 
     database.rawQuery('SELECT * FROM LineChart').then((value) {
-
+      lineChartData = [];
         value.forEach((element) {
           DeveloperSeries  model = DeveloperSeries(
               yearNum: element['year'],
@@ -208,11 +208,11 @@ class AppCubit extends Cubit<AppStates> {
 
 
   void getPieChartDataFromDatabase(database) {
-    pieChartData = [];
+
     emit(AppGetPieChartDatabaseLoadingState());
 
     database.rawQuery('SELECT * FROM PieChart').then((value) {
-
+      pieChartData = [];
 
       value.forEach((element) {
       DeveloperSeries   model = DeveloperSeries(
@@ -236,6 +236,15 @@ class AppCubit extends Cubit<AppStates> {
     {
       //getDataFromDatabase(database);
       emit(DeleteLineChartDatabaseState());
+    });
+  }
+  void deletePieChartData() async
+  {
+    database.rawDelete('DELETE FROM PieChart ')
+        .then((value)
+    {
+
+      emit(DeletePieChartDatabaseState());
     });
   }
 

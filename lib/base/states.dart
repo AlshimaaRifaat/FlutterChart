@@ -19,6 +19,7 @@ class AppInsertLineDatabaseState extends AppStates {}
 class AppInsertPieDatabaseState extends AppStates {}
 
 class DeleteLineChartDatabaseState extends AppStates {}
+class DeletePieChartDatabaseState extends AppStates {}
 
 class AppGetLineChartDatabaseLoadingState extends AppStates {}
 class AppGetLineChartDatabaseState extends AppStates {}
