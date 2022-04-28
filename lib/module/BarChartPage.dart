@@ -97,6 +97,7 @@ class BarChartPage extends StatelessWidget {
                     defaultButton(
                         text: 'Save par chart data',
                         function: () {
+                          cubit.deleteParChartData();
                           cubit.insertToDatabase(
                               year: "2018",
                               developers: int.parse(year1ParChartController.text),

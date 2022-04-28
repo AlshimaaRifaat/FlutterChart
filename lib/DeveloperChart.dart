@@ -39,7 +39,7 @@ class DeveloperChart extends StatelessWidget {
               children: <Widget>[
 
                 Text(
-                  "Yearly Growth",
+                  "Yearly Growth for developers",
                   style: Theme.of(context).textTheme.bodyText1,
                 ),
 

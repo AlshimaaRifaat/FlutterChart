@@ -247,5 +247,14 @@ class AppCubit extends Cubit<AppStates> {
       emit(DeletePieChartDatabaseState());
     });
   }
+  void deleteParChartData() async
+  {
+    database.rawDelete('DELETE FROM sample ')
+        .then((value)
+    {
+
+      emit(DeleteParChartDatabaseState());
+    });
+  }
 
 }
